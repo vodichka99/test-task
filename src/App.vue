@@ -1,11 +1,24 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+  <router-view :userName="userName" />
 </template>
-
+<script>
+export default {
+  mounted() {
+  //     const arr = [
+  //       { name: "Eugene", password: "123", token: "123", confirmed: true },
+  //       { name: "Jack", password: "123", token: "321", confirmed: false },
+  //     ];
+  //     localStorage.setItem('token', '123')
+  //     localStorage.setItem("users", JSON.stringify(arr));
+    this.$store.dispatch('authUser')
+  },
+  computed: {
+    userName(){
+      return this.$store.getters.getUserName
+    }
+  }
+};
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
